@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^posts/([a-zA-Z0-9_-]+)/?$ post.php [L]
+RewriteRule ^pages/([a-zA-Z0-9_-]+)/?$ page.php [L]

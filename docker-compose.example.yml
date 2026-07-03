@@ -1,0 +1,26 @@
+# Example: add a simple-blog site to simple-webs.
+# Copy this service block into simple-webs/docker-compose.yml
+# and populate sites/myblog/ with your content and theme.
+
+services:
+  myblog:
+    image: simple-blog:latest
+    volumes:
+      - ./sites/myblog/posts:/var/www/html/posts:ro
+      - ./sites/myblog/pages:/var/www/html/pages:ro
+      - ./sites/myblog/theme:/var/www/html/theme:ro
+      - ./sites/myblog/config.php:/var/www/html/config.php:ro
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.myblog.rule=Host(`myblog.localhost`)"
+      - "traefik.http.routers.myblog.entrypoints=web"
+      # Production (real domain + HTTPS):
+      # - "traefik.http.routers.myblog.rule=Host(`myblog.example.com`)"
+      # - "traefik.http.routers.myblog.entrypoints=websecure"
+      # - "traefik.http.routers.myblog.tls.certresolver=letsencrypt"
+
+networks:
+  web:
+    external: true
