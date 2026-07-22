@@ -14,7 +14,7 @@ if (!$page) {
     exit;
 }
 
-$page_title = htmlspecialchars($page['meta']['title']) . ' — ' . htmlspecialchars($config['site_name']);
+$page_title = htmlspecialchars(str_replace(['"', "'"], '', $page['meta']['title'])) . ' — ' . htmlspecialchars($config['site_name']);
 require __DIR__ . '/theme/header.php';
 ?>
 
