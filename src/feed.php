@@ -12,7 +12,10 @@ function rss_escape(string $text): string {
     return htmlspecialchars($text, ENT_XML1 | ENT_QUOTES, 'UTF-8');
 }
 
-$scheme   = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$forwarded_proto = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '';
+$is_https        = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || strtolower(explode(',', $forwarded_proto)[0]) === 'https';
+$scheme   = $is_https ? 'https' : 'http';
 $base_url = $scheme . '://' . $_SERVER['HTTP_HOST'];
 
 $all_posts = get_all_posts();
