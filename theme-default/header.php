@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($page_title ?? $config['site_name']) ?></title>
+    <link rel="alternate" type="application/rss+xml" title="<?= htmlspecialchars($config['site_name']) ?> RSS Feed" href="/feed.xml">
     <link rel="stylesheet" href="/theme/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github.min.css">
     <?php if (!empty($config['owa_base_url']) && !empty($config['owa_site_id'])): ?>
