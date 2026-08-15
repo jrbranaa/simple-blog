@@ -66,7 +66,7 @@ To release a new version, update `VERSION` and re-run the build command above.
 
 ## Publishing the image
 
-The image is published to GitHub Container Registry (GHCR) as a multi-platform build targeting `linux/amd64` and `linux/arm64`.
+The image is published to GitHub Container Registry (GHCR) as a `linux/amd64` build.
 
 Log in to GHCR first (one-time):
 
@@ -77,14 +77,10 @@ echo $GITHUB_TOKEN | docker login ghcr.io -u jrbranaa --password-stdin
 Build and push in a single step:
 
 ```bash
-docker buildx build \
-  --platform linux/amd64,linux/arm64 \
-  -t ghcr.io/jrbranaa/simple-blog:latest \
-  -t ghcr.io/jrbranaa/simple-blog:$(cat VERSION) \
-  --push .
+./scripts/release.sh
 ```
 
-This replaces both the local `docker build` and `docker tag` steps — `buildx` with `--push` builds and pushes all platform variants atomically.
+The script reads the `VERSION` file itself and tags/pushes `ghcr.io/jrbranaa/simple-blog:<VERSION>` and `:latest` from that value — there's no tag to hand-type, so it can't drift from what's actually in `VERSION`. To release a new version, update `VERSION` and re-run the script.
 
 ---
 
