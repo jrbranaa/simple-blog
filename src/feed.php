@@ -23,6 +23,7 @@ $posts     = array_slice($all_posts, 0, $config['feed_items'] ?? 20);
 
 header('Content-Type: application/rss+xml; charset=UTF-8');
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+echo '<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>' . "\n";
 ?>
 <rss version="2.0">
 <channel>
