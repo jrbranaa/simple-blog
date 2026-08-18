@@ -91,7 +91,7 @@ Each site provides four volume mounts:
 | Mount target (in container)  | What it contains                          |
 |------------------------------|-------------------------------------------|
 | `/var/www/html/config.php`   | Site name, analytics, pagination settings |
-| `/var/www/html/theme/`       | `header.php`, `footer.php`, `sidebar.php`, `style.css`, `logo.png` |
+| `/var/www/html/theme/`       | `header.php`, `footer.php`, `sidebar.php`, `style.css`, `logo.png`, `favicon.ico` |
 | `/var/www/html/posts/`       | Markdown post files (`*.md`)              |
 | `/var/www/html/pages/`       | Markdown page files (`*.md`)              |
 
@@ -120,6 +120,7 @@ Start by copying `theme-default/` into your site directory and customizing:
 | `sidebar.php` | Sidebar widget content (leave empty to hide the sidebar) |
 | `style.css`   | All site styles                                          |
 | `logo.png`    | Logo image (referenced as `/theme/logo.png`)             |
+| `favicon.ico` | Site/tab icon, also used by feed readers (referenced as `/theme/favicon.ico`) |
 
 The engine passes two PHP variables into every template:
 
@@ -197,7 +198,8 @@ Internet
        ├── footer.php
        ├── sidebar.php
        ├── style.css
-       └── logo.png
+       ├── logo.png
+       └── favicon.ico
    ```
 
 3. **Add a service block** to `simple-webs/docker-compose.yml`:
